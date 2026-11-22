@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Delete {{ object.title }}{% endblock %}
+{% block content %}
+<h1>Delete “{{ object.title }}”?</h1>
+<img src="{{ object.image.url }}" alt="{{ object.title }}" class="preview">
+<form method="post">{% csrf_token %}
+  <button type="submit" class="danger">Delete</button> <a href="{% url 'profile' %}">Cancel</a>
+</form>
+{% endblock %}

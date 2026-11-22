@@ -1,0 +1,36 @@
+[project]
+name = "picture-mapper"
+version = "2.0.0"
+description = "Upload pictures with their location and see them on a map"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "django>=6.1,<7",
+    "pillow>=11",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-django>=4.9",
+    "ruff>=0.8",
+]
+
+[tool.uv]
+package = false  # a Django project, not a library
+
+[tool.pytest.ini_options]
+DJANGO_SETTINGS_MODULE = "tests.settings"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+target-version = "py312"
+extend-exclude = ["*/migrations"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "PL", "RUF", "S", "T20", "DJ"]
+ignore = ["RUF012"]  # Django's Meta and widgets attributes are meant to be plain class attributes
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["S101", "S106", "PLR2004"]

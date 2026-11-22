@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}My pictures{% endblock %}
+{% block content %}
+<h1>My pictures</h1>
+<p><a class="button" href="{% url 'upload_picture' %}">Upload a picture</a></p>
+{% if pictures %}
+  <ul class="grid">
+  {% for picture in pictures %}
+    <li>
+      <img src="{{ picture.image.url }}" alt="{{ picture.title }}" loading="lazy">
+      <strong>{{ picture.title }}</strong>
+      <small>{{ picture.latitude }}, {{ picture.longitude }}</small>
+      <span>
+        <a href="{% url 'edit_picture' picture.pk %}">Edit</a>
+        <a href="{% url 'delete_picture' picture.pk %}">Delete</a>
+      </span>
+    </li>
+  {% endfor %}
+  </ul>
+{% else %}
+  <p>You have not uploaded anything yet.</p>
+{% endif %}
+{% endblock %}

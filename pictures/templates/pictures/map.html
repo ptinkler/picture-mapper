@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Map{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'vendor/leaflet/leaflet.css' %}">
+  <script src="{% static 'vendor/leaflet/leaflet.js' %}" defer></script>
+  <script src="{% static 'pictures/map.js' %}" defer></script>
+{% endblock %}
+{% block content %}
+<h1>Map</h1>
+<p>
+  <label for="user-filter">Show</label>
+  <select id="user-filter">
+    <option value="">everyone's pictures</option>
+    {% for u in users %}<option value="{{ u.pk }}">{{ u.get_username }}</option>{% endfor %}
+  </select>
+</p>
+<div id="map" class="map tall" data-url="{% url 'picture_data' %}"></div>
+{% endblock %}

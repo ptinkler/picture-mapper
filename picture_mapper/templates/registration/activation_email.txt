@@ -1,5 +1,0 @@
-Congratulations! You have successfully registered for {{ site }}!
-
-To activate your account, please click on the following activation link:
-
-{{ site }}{% url 'registration_activate' activation_key %}
