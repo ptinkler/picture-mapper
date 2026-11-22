@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{% if object %}Edit{% else %}Upload{% endif %} a picture{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="{% static 'vendor/leaflet/leaflet.css' %}">
+  <script src="{% static 'vendor/leaflet/leaflet.js' %}" defer></script>
+  <script src="{% static 'pictures/picker.js' %}" defer></script>
+{% endblock %}
+{% block content %}
+<h1>{% if object %}Edit{% else %}Upload{% endif %} a picture</h1>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}
+  {{ form.non_field_errors }}
+  {% for field in form %}
+    {% if field.name != "latitude" and field.name != "longitude" %}<p>{{ field.errors }}{{ field.label_tag }} {{ field }}</p>{% endif %}
+  {% endfor %}
+  <p>Where was it taken? Click the map, or leave it blank to use the GPS data in the photo.</p>
+  <div id="picker" class="map"></div>
+  <p>{{ form.latitude.errors }}{{ form.longitude.errors }}
+    {{ form.latitude.label_tag }} {{ form.latitude }}
+    {{ form.longitude.label_tag }} {{ form.longitude }}</p>
+  <button type="submit">Save</button> <a href="{% url 'profile' %}">Cancel</a>
+</form>
+{% endblock %}

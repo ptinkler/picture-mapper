@@ -1,24 +1,12 @@
-# Python bytecode:
-*.py[co]
-
-# Packaging files:
-*.egg*
-
-# Editor temp files:
-*.swp
-*~
-
-# Django settings file:
-settings.py
-
-# Sphinx docs:
-build
-
-# SQLite3 database files:
-*.db
-
-# Logs:
-*.log
-
-# Pycharm .idea folder
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+dist/
+*.egg-info/
 .idea/
+db.sqlite3
+media/
+.env
+/staticfiles/
